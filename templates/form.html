@@ -7,13 +7,27 @@
     <title>URL-Shortener</title>
 </head>
 <body>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <p>{{ messages[0] }}</p>
+        {% endif %}
+    {% endwith %}
     <form id="submission" action="" method="POST">
-        <input type="text" name="url-input" value={{url}}>
+        <input type="text" placeholder="Input Url" name="url-input" value={{url}}>
         <input type="submit" id="url-submit" value="Submit">
     </form>
     {% if shortened %}
         <p>Here is your brand new shortened URL:</p>
         <a href="{{url}}" target=_blank>{{shortened}}</a>
+        <input type="button" id="url-copy" value="Copy" onclick="copyTextToClipboard()">
     {% endif %} 
+
+    <script>
+        function copyTextToClipboard() {
+            copy = document.querySelector('a')
+            console.log(copy.innerText)
+            navigator.clipboard.writeText(copy.innerText)
+        }
+    </script>
 </body>
 </html>
