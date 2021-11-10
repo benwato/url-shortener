@@ -7,9 +7,13 @@
     <title>URL-Shortener</title>
 </head>
 <body>
-    <form id="submission" action="/" method="POST">
+    <form id="submission" action="" method="POST">
         <input type="text" name="url-input" value={{url}}>
         <input type="submit" id="url-submit" value="Submit">
     </form>
+    {% if shortened %}
+        <p>Here is your brand new shortened URL:</p>
+        <a href="{{url}}" target=_blank>{{shortened}}</a>
+    {% endif %} 
 </body>
 </html>
